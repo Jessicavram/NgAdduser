@@ -1,0 +1,45 @@
+<div class="container">
+<h1>{{title}}</h1>
+	<div class="row">
+		<div class="col">
+			<form (ngSubmit)="f.form.valid && agregarUsuario(f)" #f="ngForm">
+				<div class="form-group is-invalid">
+					<label for="username">Name:</label>
+					<input class="form-control" type="text" [(ngModel)]="model.username" 
+					[ngClass]="{ 'is-invalid': f.submitted && !username.valid }" 
+					id="username" name="username" required #username="ngModel" />					
+					<div class="invalid-feedback">Campo requerido</div>					
+				</div>
+				<div class="form-group is-invalid">
+					<label for="firstName">First Name:</label>
+					<input class="form-control" type="text" [(ngModel)]="model.firstName" 
+					[ngClass]="{ 'is-invalid': f.submitted && !firstName.valid }" 
+					id="firstName" name="firstName" required #firstName="ngModel" />					
+					<div class="invalid-feedback">Campo requerido</div>					
+				</div>
+				<div>
+					<input class="btn btn-primary" type="submit" value="Add">
+				</div>
+				Form Valido:{{f.form.valid}} Form Enviado: {{f.submitted}}
+			</form>
+		</div>
+		<div class="col">
+			<div *ngIf="usuarios.length > 0">
+				<table class="table table-bordered">
+					<thead>
+						<tr>						
+							<th>Username</th>
+							<th>First Name</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let user of usuarios">
+							<td>{{user.username}}</td>
+							<td>{{user.firstName}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	</div>
+</div>
+
